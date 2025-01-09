@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Navbar } from "@/components/Navbar"
+import { Navbar } from "@/components/Navbar";
+import { montserrat } from '@/app/fonts';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,8 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={montserrat.className}>
+      <body className="bg-gradient-to-b from-stone-600 from-0%">
         <Navbar />
         {children}
       </body>
