@@ -29,12 +29,12 @@ export default function Page() {
           Round 1/32
         </div>
         <div className="flex flex-row gap-20">
-          <div className="flex flex-col gap-5 items-center bg-white p-5">
+          <div className="flex flex-col gap-5 items-center bg-stone-800 p-5 rounded-lg shadow-lg">
             { vid1 }
             <PickButton />
           </div>
-          <div className="flex flex-col gap-5 items-center bg-black p-5">
-            { vid1 }
+          <div className="flex flex-col gap-5 items-center bg-stone-800 p-5 rounded-lg shadow-lg">
+            { vid2 }
             <PickButton />
           </div>
         </div>
