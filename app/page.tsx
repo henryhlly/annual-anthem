@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main>
       {/* Description textbox */}
-      <div className="fixed top-48 left-32 bg-stone-700/50 py-16 px-16 max-w-md rounded-lg flex flex-col gap-5 shadow-lg">
+      <div className="fixed top-1/3 left-32 bg-stone-700/50 py-16 px-16 max-w-md rounded-lg flex flex-col gap-5 shadow-lg">
         <h1 className="text-white text-3xl">
           Find your ultimate song of 2024!
         </h1>
