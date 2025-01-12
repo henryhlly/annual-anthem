@@ -1,6 +1,9 @@
 'use client'
+
 import Youtube, { YouTubeProps } from 'react-youtube';
 import { PickButton } from '@/components/PickButton';
+import { useEffect, useState } from 'react';
+import { getRandomAllSongs } from '@/lib/bracket';
 
 function getYoutube({ url }: { url: string }) {
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
@@ -16,8 +19,21 @@ function getYoutube({ url }: { url: string }) {
 }
 
 export default function Page() {
-  const vid1 = getYoutube({ url: "JQbjS0_ZfJ0" })
-  const vid2 = getYoutube({ url: "8MvGyEb43-M" })
+  const [songsLeft, setSongsLeft] = useState<string[]>([]);
+
+  useEffect(() => {
+    async function fetchSongs() {
+      const songs = await getRandomAllSongs();
+      setSongsLeft(songs);
+    }
+    fetchSongs();
+  }, []);
+
+  const song1: string = songsLeft.pop() || ""
+  const song2: string = songsLeft.pop() || ""
+
+  const vid1 = getYoutube({ url: song1 })
+  const vid2 = getYoutube({ url: song2 })
 
   return (
     <main>
