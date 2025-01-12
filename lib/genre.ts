@@ -1,5 +1,12 @@
 import { endpoint } from '@/utils/endpoint';
 
+export type Genre = {
+  id: string;
+  name: string;
+  data: string;
+  image: string;
+}
+
 export async function getAllGenres() {
   const data = await fetch(`${endpoint}/start`)
 

@@ -1,10 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { TbArrowBigRightFilled } from 'react-icons/tb';
-import { getGenreById } from '@/lib/genre';
+import { getGenreById, getAllGenres, Genre } from '@/lib/genre';
+
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  const { genres } = await getAllGenres()
+  return genres.map((genre : Genre) => ({ id: genre.id}))
+}
 
 export default async function Page({ params }: { params: any }) {
-  const { genre } = await getGenreById(params.id)
+  const { genre }: {genre: Genre} = await getGenreById(params.id)
 
   return (
     <div className="relative right-1/4 flex flex-col items-center h-[calc(100vh-4rem)] w-full py-32">
