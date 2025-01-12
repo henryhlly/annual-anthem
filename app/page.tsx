@@ -15,15 +15,15 @@ export default function Home() {
       <div className="flex flex-col ml-96 py-32 min-h-screen items-center justify-center gap-32">
         <div className="flex flex-col -gap-16">
           <h1 className="text-4xl text-center font-medium">
-        General
+        Pop
           </h1>
-          <Image src="/kpop-logo.png" alt="general logo" width={400} height={400} quality={100} />
+          <Image src="/pop-logo.png" alt="general logo" width={400} height={400} quality={100} />
         </div>
         <div className="flex flex-col -gap-16">
           <h1 className="text-4xl text-center font-medium">
         Kpop
           </h1>
-          <Image src="/general-logo.png" alt="kpop logo" width={400} height={400} quality={100} />
+          <Image src="/kpop-logo.png" alt="kpop logo" width={400} height={400} quality={100} />
         </div>
       </div>
     </main>
