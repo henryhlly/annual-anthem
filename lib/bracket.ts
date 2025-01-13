@@ -15,21 +15,25 @@ function shuffle({array}: {array: string[]}) {
 }
 
 export async function getRandomAllSongs() {
-  const data = await fetch(`${endpoint}/bracket`, { cache: 'no-store' })
+  const data = await fetch(`${endpoint}/bracket`)
 
   if (!data.ok) {
     throw new Error('Failed to fetch data')
   }
 
   const jsonData = await data.json()
-  console.log(jsonData); // Log the jsonData to inspect its structure
 
   // Check if jsonData.data is defined and is an array
-  if (!jsonData.data || !Array.isArray(jsonData.data)) {
+  if (!jsonData.pop_songs || !Array.isArray(jsonData.pop_songs)) {
     throw new Error('Invalid data structure');
   }
 
   const youtubeUrls: string[] = jsonData.pop_songs.map((song: { youtubeUrl: string }) => song.youtubeUrl)
+  console.log(youtubeUrls)
 
-  return shuffle({ array: youtubeUrls });
+  const thing = shuffle({ array: youtubeUrls });
+
+  console.log(thing)
+
+  return thing
 }
