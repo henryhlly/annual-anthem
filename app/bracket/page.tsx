@@ -6,7 +6,7 @@ export default async function Page() {
 
   return (
     <main>
-      <Tournament song_array={songList} />
+      <Tournament songList={songList} />
     </main>
   )
 }
