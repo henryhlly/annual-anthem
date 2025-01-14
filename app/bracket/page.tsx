@@ -1,19 +1,12 @@
 import { getRandomAllSongs } from '@/lib/bracket';
+import { Tournament } from '@/components/Tournament';
 
 export default async function Page() {
-  const song_list = await getRandomAllSongs();
+  const songList = await getRandomAllSongs();
 
   return (
     <main>
-      <ul>
-        {song_list?.map((song: string, index: number) => {
-          return (
-            <li key={index}>
-              {song}
-            </li>
-          )
-        })}
-      </ul>
+      <Tournament song_array={songList} />
     </main>
   )
 }

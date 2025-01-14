@@ -1,5 +1,11 @@
 import { endpoint } from '@/utils/endpoint'
 
+export type Song = {
+  title: string;
+  artist: string;
+  youtube_url: string;
+}
+
 function shuffle({array}: {array: string[]}) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
@@ -28,12 +34,7 @@ export async function getRandomAllSongs() {
     throw new Error('Invalid data structure');
   }
 
-  const youtubeUrls: string[] = jsonData.pop_songs.map((song: { youtubeUrl: string }) => song.youtubeUrl)
-  console.log(youtubeUrls)
+  const youtubeUrls: string[] = jsonData.pop_songs.map((song: Song) => song.youtube_url)
 
-  const thing = shuffle({ array: youtubeUrls });
-
-  console.log(thing)
-
-  return thing
+  return shuffle({ array: youtubeUrls });
 }

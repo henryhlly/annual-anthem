@@ -2,8 +2,10 @@
 
 import Youtube, { YouTubeProps } from 'react-youtube';
 import { PickButton } from '@/components/PickButton';
+import { getRandomAllSongs } from '@/lib/bracket';
+import { useState, useEffect} from 'react';
 
-function getYoutube({ url }: { url: string }) {
+function getYoutube({ url }: { url: any }) {
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
     event.target.pauseVideo();
   }
@@ -16,7 +18,14 @@ function getYoutube({ url }: { url: string }) {
   return <Youtube videoId={url} opts={opts} onReady={onPlayerReady} />;
 }
 
-export const Tournament = () => {
+export const Tournament = ({ song_array }: {song_array : string[]}) => {
+  
+  const [ songList, setSongList ] = useState(song_array)
+
+  console.log(songList.length)
+
+  const vid1 = getYoutube({url: songList.pop()})
+  const vid2 = getYoutube({url: songList.pop()})
 
   return (
     <div className="flex flex-col items-center h-[calc(100vh-4rem)] gap-5 py-6"> {/* height calculation to take into account navbar*/}
@@ -28,9 +37,11 @@ export const Tournament = () => {
         </div>
         <div className="flex flex-row gap-20">
           <div className="flex flex-col gap-5 items-center bg-stone-800 p-5 rounded-lg shadow-lg">
+            {vid1}
             <PickButton />
           </div>
           <div className="flex flex-col gap-5 items-center bg-stone-800 p-5 rounded-lg shadow-lg">
+            {vid2}
             <PickButton />
           </div>
         </div>
