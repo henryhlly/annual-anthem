@@ -27,15 +27,16 @@ export const Tournament = ({ songList }: {songList : string[]}) => {
 
   const [ roundNum, setRoundNum] = useState(1)
   const [ videos, setVideos] = useState(songList)
-  const video1 = videos[0]
-  const video2 = videos[1]
+  const video1 = videos[roundNum-1]
+  const video2 = videos[roundNum]
 
   console.log(videos.length)
   console.log(videos)
 
-  function handleClick() {
+  function handleClick({ chosenSong }: { chosenSong: number}) {
     setRoundNum(roundNum + 1)
-    setVideos(videos.slice(2))
+    videos.splice(chosenSong, 1)
+    setVideos(videos)
   }
 
   return (
@@ -44,21 +45,28 @@ export const Tournament = ({ songList }: {songList : string[]}) => {
           Which song is better?
         </h1>
         <div className="text-2xl bg-sky-600 w-1/4 h-12 text-center rounded-lg flex items-center justify-center">
-          Round {roundNum}/{songList.length/2}
+          Round {roundNum}/16
         </div>
         <div className="flex flex-row gap-20">
           <div className="flex flex-col gap-5 items-center bg-stone-800 p-5 rounded-lg shadow-lg">
             {getYoutube({url: video1})}
-            <PickButton />
+            <button 
+              className="text-2xl bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700"
+              onClick={() => handleClick({ chosenSong: roundNum - 1 })}
+            >
+              Pick This
+            </button>
           </div>
           <div className="flex flex-col gap-5 items-center bg-stone-800 p-5 rounded-lg shadow-lg">
             {getYoutube({url: video2})}
-            <PickButton />
+            <button 
+              className="text-2xl bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700" 
+              onClick={() => handleClick({ chosenSong: roundNum })}
+            >
+              Pick This
+            </button>
           </div>
         </div>
-        <button className="text-2xl mt-8 bg-sky-600 w-2/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700" onClick={handleClick}>
-          Next Matchup
-        </button>
     </div>
   )
 }
