@@ -1,6 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
+import { getAllGenres, Genre} from "@/lib/genre";
 
-export default function Home() {
+export default async function Home() {
+  const data = await getAllGenres()
+
   return (
     <main>
       {/* Description textbox */}
@@ -12,19 +16,18 @@ export default function Home() {
           Go through a bracket style tournament system where you have the power, and determine your favourite songs of the past year.
         </p>
       </div>
+
       <div className="flex flex-col ml-96 py-32 min-h-screen items-center justify-center gap-32">
-        <div className="flex flex-col -gap-16">
-          <h1 className="text-4xl text-center font-medium">
-        General
-          </h1>
-          <Image src="/kpop-logo.png" alt="general logo" width={400} height={400} quality={100} />
-        </div>
-        <div className="flex flex-col -gap-16">
-          <h1 className="text-4xl text-center font-medium">
-        Kpop
-          </h1>
-          <Image src="/general-logo.png" alt="kpop logo" width={400} height={400} quality={100} />
-        </div>
+        {data?.genres?.map((genre: Genre) => {
+          return (
+            <Link href={"/start/"+genre.id} className="flex flex-col -gap-16" key={genre.id}>
+              <h1 className="text-4xl text-center font-medium">
+                {genre.name}
+              </h1>
+              <Image src={"/"+genre.image+".png"} alt="general logo" width={400} height={400} quality={100} />
+            </Link>
+          )
+        })}
       </div>
     </main>
   );

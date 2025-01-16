@@ -1,12 +1,16 @@
 {
   "data": [
     {
-      "genre": "Pop",
-      "data": "pop_songs"
+      "id": "1",
+      "name": "Pop",
+      "data": "pop_songs",
+      "image": "pop-logo"
     },
     {
-      "genre": "Kpop",
-      "data": ""
+      "id": "2",
+      "name": "Kpop",
+      "data": "kpop-songs",
+      "image": "kpop-logo"
     }
   ]
 }
