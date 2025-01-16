@@ -19,39 +19,40 @@ function getYoutube({ url }: { url: any }) {
   return <Youtube videoId={url} opts={opts} onReady={onPlayerReady} />;
 }
 
-export const Tournament = ({ songList, totalRounds }: {songList: string[], totalRounds: number }) => {
+export const Tournament = ({ songList, songAmount }: {songList: string[], songAmount: number }) => {
   const router = useRouter()
-
-  useEffect(() => {
-    console.log('Tournament component rendered');
-  }, []);
-
-  const [ currentRound, setCurrentRound] = useState(1)
-  const [ rotationNum, setRotationNum ] = useState(1)
+  const currentRound = useRef(1)
+  const rotationNum = useRef(1)
   const [ videos, setVideos] = useState(songList)
 
-  const video1 = videos[currentRound-1]
-  const video2 = videos[currentRound]
-  let roundNum = totalRounds / Math.pow(2,rotationNum)
+  const video1 = videos[currentRound.current-1]
+  const video2 = videos[currentRound.current]
+  let totalRounds = songAmount / Math.pow(2, rotationNum.current)
+  let roundLabel = ""
 
   useEffect(() => {
-    if (roundNum < 1) {
-      roundNum = currentRound
+    if (totalRounds < 1) {
+      totalRounds = currentRound.current
       console.log('Tournament Finished');
       router.push('/');
     }
-  }, [roundNum, router]);
+  }, [totalRounds, router]);
 
-  if (currentRound > roundNum) {
-    setRotationNum(rotationNum + 1);
-    setCurrentRound(1);
-    console.log(rotationNum);
+  if (currentRound.current > totalRounds) {
+    rotationNum.current = rotationNum.current + 1
+    currentRound.current = 1
   }
-  
-  
+
+  if (totalRounds <= 1) {
+    roundLabel = "Grand Final"
+  } else if (totalRounds === 2) {
+    roundLabel = "Semi-final "+currentRound.current+"/"+totalRounds
+  } else {
+    roundLabel = "Round "+currentRound.current+"/"+totalRounds
+  }
 
   function handleClick({ removeSong }: { removeSong: number}) {
-    setCurrentRound(currentRound + 1)
+    currentRound.current = (currentRound.current + 1)
     const updatedVideos = [...videos];
     updatedVideos.splice(removeSong, 1);
     setVideos(updatedVideos);
@@ -63,14 +64,14 @@ export const Tournament = ({ songList, totalRounds }: {songList: string[], total
           Which song is better?
         </h1>
         <div className="text-2xl bg-sky-600 w-1/4 h-12 text-center rounded-lg flex items-center justify-center">
-          Round {currentRound}/{roundNum}
+          {roundLabel}
         </div>
         <div className="flex flex-row gap-20">
           <div className="flex flex-col gap-5 items-center bg-stone-800 p-5 rounded-lg shadow-lg">
             {getYoutube({url: video1})}
             <button 
               className="text-2xl bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700"
-              onClick={() => handleClick({ removeSong: currentRound })}
+              onClick={() => handleClick({ removeSong: currentRound.current })}
             >
               Pick Left
             </button>
@@ -79,18 +80,12 @@ export const Tournament = ({ songList, totalRounds }: {songList: string[], total
             {getYoutube({url: video2})}
             <button 
               className="text-2xl bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700" 
-              onClick={() => handleClick({ removeSong: currentRound - 1 })}
+              onClick={() => handleClick({ removeSong: currentRound.current - 1 })}
             >
               Pick Right
             </button>
           </div>
         </div>
-        <button 
-          className="text-2xl bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700" 
-          onClick={() => {router.push('/')}}
-        >
-          PRESS
-        </button>
     </div>
   )
 }

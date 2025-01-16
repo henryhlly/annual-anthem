@@ -6,7 +6,7 @@ export default async function Page() {
 
   return (
     <main>
-      <Tournament songList={songList} totalRounds={4} />
+      <Tournament songList={songList} songAmount={16} />
     </main>
   )
 }
