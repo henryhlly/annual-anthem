@@ -4,7 +4,8 @@ import { NextResponse } from 'next/server';
 
 export async function GET(req: Request, { params }: { params: { id: string } }) {
   try {
-    const genre = await genres.data.find(item => item.id === params.id)
+    const { id } = await params
+    const genre = genres.data.find(item => item.id === id)
 
     if (!genre) {
       return new NextResponse('not found', { status: 404 })

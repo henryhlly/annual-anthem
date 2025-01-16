@@ -2,11 +2,13 @@ import { getRandomAllSongs } from '@/lib/bracket';
 import { Tournament } from '@/components/Tournament';
 
 export default async function Page() {
-  const songList = await getRandomAllSongs();
+  const n = 16
+
+  const songList = await getRandomAllSongs({numberOfSongs: n});
 
   return (
     <main>
-      <Tournament songList={songList} songAmount={16} />
+      <Tournament songList={songList} songAmount={n} />
     </main>
   )
 }

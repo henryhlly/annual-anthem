@@ -11,7 +11,8 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: any }) {
-  const { genre }: {genre: Genre} = await getGenreById(params.id)
+  const { id } = await params
+  const { genre }: {genre: Genre} = await getGenreById(id)
 
   return (
     <div className="relative right-1/4 flex flex-col items-center h-[calc(100vh-4rem)] w-full py-32">

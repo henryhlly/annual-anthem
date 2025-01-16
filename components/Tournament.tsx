@@ -1,10 +1,9 @@
 'use client'
 
 import Youtube, { YouTubeProps } from 'react-youtube';
-import { PickButton } from '@/components/PickButton';
-import { getRandomAllSongs } from '@/lib/bracket';
 import { useState, useEffect, useRef} from 'react';
 import { useRouter } from 'next/navigation';
+import { shuffle } from '@/lib/shuffle';
 
 function getYoutube({ url }: { url: any }) {
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
@@ -22,12 +21,12 @@ function getYoutube({ url }: { url: any }) {
 export const Tournament = ({ songList, songAmount }: {songList: string[], songAmount: number }) => {
   const router = useRouter()
   const currentRound = useRef(1)
-  const rotationNum = useRef(1)
+  const [rotationNum, setRotationNum] = useState(1)
   const [ videos, setVideos] = useState(songList)
 
   const video1 = videos[currentRound.current-1]
   const video2 = videos[currentRound.current]
-  let totalRounds = songAmount / Math.pow(2, rotationNum.current)
+  let totalRounds = songAmount / Math.pow(2, rotationNum)
   let roundLabel = ""
 
   useEffect(() => {
@@ -38,10 +37,14 @@ export const Tournament = ({ songList, songAmount }: {songList: string[], songAm
     }
   }, [totalRounds, router]);
 
-  if (currentRound.current > totalRounds) {
-    rotationNum.current = rotationNum.current + 1
-    currentRound.current = 1
-  }
+  useEffect(() => {
+    if (currentRound.current > totalRounds) {
+      setRotationNum(rotationNum + 1);
+      currentRound.current = 1;
+      setVideos(shuffle({ array: videos }));
+      console.log(rotationNum)
+    }
+  }, [currentRound.current, totalRounds, videos]);
 
   if (totalRounds <= 1) {
     roundLabel = "Grand Final"

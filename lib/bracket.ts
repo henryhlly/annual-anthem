@@ -1,4 +1,5 @@
-import { endpoint } from '@/utils/endpoint'
+import { endpoint } from '@/utils/endpoint';
+import { shuffle } from '@/lib/shuffle';
 
 export type Song = {
   title: string;
@@ -6,21 +7,7 @@ export type Song = {
   youtube_url: string;
 }
 
-function shuffle({array}: {array: string[]}) {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
-
-    // swap elements array[i] and array[j]
-    // we use "destructuring assignment" syntax to achieve that
-    // you'll find more details about that syntax in later chapters
-    // same can be written as:
-    // let t = array[i]; array[i] = array[j]; array[j] = t
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array
-}
-
-export async function getRandomAllSongs() {
+export async function getRandomAllSongs({numberOfSongs}: {numberOfSongs: number}) {
   const data = await fetch(`${endpoint}/bracket`)
 
   if (!data.ok) {
@@ -36,5 +23,5 @@ export async function getRandomAllSongs() {
 
   const youtubeUrls: string[] = jsonData.pop_songs.map((song: Song) => song.youtube_url)
 
-  return shuffle({ array: youtubeUrls });
+  return shuffle({ array: youtubeUrls.splice(0, numberOfSongs) });
 }
