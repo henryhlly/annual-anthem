@@ -10,7 +10,7 @@ export async function generateStaticParams() {
   return genres.map((genre : Genre) => ({ id: genre.id}))
 }
 
-export default async function Page({ params }: { params: any }) {
+export default async function Page({ params }: { params: Genre }) {
   const { id } = await params
   const { genre }: {genre: Genre} = await getGenreById(id)
 

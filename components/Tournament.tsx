@@ -1,22 +1,9 @@
 'use client'
 
-import Youtube, { YouTubeProps } from 'react-youtube';
 import { useState, useEffect, useRef} from 'react';
 import { useRouter } from 'next/navigation';
 import { shuffle } from '@/lib/shuffle';
-
-function getYoutube({ url }: { url: any }) {
-  const onPlayerReady: YouTubeProps['onReady'] = (event) => {
-    event.target.pauseVideo();
-  }
-
-  const opts: YouTubeProps['opts'] = {
-    height: '360',
-    width: '480'
-  }
-
-  return <Youtube videoId={url} opts={opts} onReady={onPlayerReady} />;
-}
+import { getYoutube } from '@/lib/youtube';
 
 export const Tournament = ({ songList, songAmount }: {songList: string[], songAmount: number }) => {
   const router = useRouter()
@@ -31,9 +18,9 @@ export const Tournament = ({ songList, songAmount }: {songList: string[], songAm
 
   useEffect(() => {
     if (totalRounds < 1) {
+      router.push(`/result/${videos[0]}`);
       totalRounds = currentRound.current
       console.log('Tournament Finished');
-      router.push('/');
     }
   }, [totalRounds, router]);
 
