@@ -1,4 +1,3 @@
-import pop_songs from '@/data/pop_songs.json';
 import genres from '@/data/genres.json';
 import { NextResponse } from 'next/server';
 
