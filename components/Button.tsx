@@ -1,3 +1,5 @@
+'use client'
+
 import { TbArrowBigRightFilled } from 'react-icons/tb';
 import Link from 'next/link';
 

@@ -23,7 +23,7 @@ export async function getRandomAllSongs({numberOfSongs}: {numberOfSongs: number}
 
   const youtubeUrls: string[] = jsonData.pop_songs.map((song: Song) => song.youtube_url)
 
-  return shuffle({ array: youtubeUrls.splice(0, numberOfSongs) });
+  return shuffle({ array: youtubeUrls }).splice(0, numberOfSongs);
 }
 
 export async function getSongByUrl({ url }: { url: string }) {
