@@ -1,10 +1,9 @@
-import pop_songs from '@/data/pop_songs.json';
 import genres from '@/data/genres.json';
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request, { params }: { params: { id: string } }) {
   try {
-    const { id } = await params
+    const { id } = params
     const genre = genres.data.find(item => item.id === id)
 
     if (!genre) {
