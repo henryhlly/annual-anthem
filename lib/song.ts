@@ -26,8 +26,8 @@ export async function getRandomAllSongs({ genreId, numberOfSongs }: { genreId: s
   return shuffle({ array: youtubeUrls }).splice(0, numberOfSongs);
 }
 
-export async function getSongByUrl({ url }: { url: string }) {
-  const data = await fetch(`${endpoint}/result/${url}`)
+export async function getSongByUrl({ genreId, url }: { genreId: string, url: string }) {
+  const data = await fetch(`${endpoint}/result/${genreId}/${url}`)
 
   if (!data.ok) {
     throw new Error('Failed to fetch data')
