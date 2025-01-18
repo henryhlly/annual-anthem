@@ -17,11 +17,11 @@ export async function getRandomAllSongs({numberOfSongs}: {numberOfSongs: number}
   const jsonData = await data.json()
 
   // Check if jsonData.data is defined and is an array
-  if (!jsonData.pop_songs || !Array.isArray(jsonData.pop_songs)) {
+  if (!jsonData.data || !Array.isArray(jsonData.data)) {
     throw new Error('Invalid data structure');
   }
 
-  const youtubeUrls: string[] = jsonData.pop_songs.map((song: Song) => song.youtube_url)
+  const youtubeUrls: string[] = jsonData.data.map((song: Song) => song.youtube_url)
 
   return shuffle({ array: youtubeUrls }).splice(0, numberOfSongs);
 }
