@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET(req: Request, { params }: { params: { id: string } }) {
   try {
-    const { id } = params
+    const { id } = await params
     const genre = genres.data.find(item => item.id === id)
 
     if (!genre) {
