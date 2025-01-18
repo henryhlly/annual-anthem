@@ -7,8 +7,8 @@ export type Song = {
   youtube_url: string;
 }
 
-export async function getRandomAllSongs({ genreId, numberOfSongs }: { genreId: string, numberOfSongs: number}) {
-  const data = await fetch(`${endpoint}/bracket/${genreId}`)
+export async function getRandomAllSongs({numberOfSongs}: {numberOfSongs: number}) {
+  const data = await fetch(`${endpoint}/bracket`)
 
   if (!data.ok) {
     throw new Error('Failed to fetch data')
