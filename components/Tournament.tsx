@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { shuffle } from '@/lib/shuffle';
 import { getYoutube } from '@/lib/youtube';
 
-export const Tournament = ({ songList, songAmount }: {songList: string[], songAmount: number }) => {
+export const Tournament = ({ songList, songAmount, genreId }: {songList: string[], songAmount: number, genreId: string }) => {
   const router = useRouter()
   const currentRound = useRef(1)
   const [rotationNum, setRotationNum] = useState(1)
@@ -18,7 +18,7 @@ export const Tournament = ({ songList, songAmount }: {songList: string[], songAm
 
   useEffect(() => {
     if (totalRounds < 1) {
-      router.push(`/result/${videos[0]}`);
+      router.push(`/result/${genreId}/${videos[0]}`);
       totalRounds = currentRound.current
       console.log('Tournament Finished');
     }
