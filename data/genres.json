@@ -1,15 +1,15 @@
 {
   "data": [
     {
-      "id": "1",
+      "id": "cG9w",
       "name": "Pop",
       "data": "pop_songs",
       "image": "pop-logo"
     },
     {
-      "id": "2",
+      "id": "a3BvcA==",
       "name": "Kpop",
-      "data": "kpop-songs",
+      "data": "kpop_songs",
       "image": "kpop-logo"
     }
   ]
