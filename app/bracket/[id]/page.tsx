@@ -9,7 +9,7 @@ export default async function Page({ params }: { params: {id: string}}) {
 
   return (
     <main>
-      <Tournament songList={songList} songAmount={n} />
+      <Tournament songList={songList} songAmount={n} genreId={id}/>
     </main>
   )
 }

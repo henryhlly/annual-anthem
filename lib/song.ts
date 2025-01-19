@@ -7,8 +7,8 @@ export type Song = {
   youtube_url: string;
 }
 
-export async function getRandomAllSongs({numberOfSongs}: {numberOfSongs: number}) {
-  const data = await fetch(`${endpoint}/bracket`)
+export async function getRandomAllSongs({ genreId, numberOfSongs }: { genreId: string, numberOfSongs: number}) {
+  const data = await fetch(`${endpoint}/bracket/${genreId}`)
 
   if (!data.ok) {
     throw new Error('Failed to fetch data')
@@ -26,8 +26,8 @@ export async function getRandomAllSongs({numberOfSongs}: {numberOfSongs: number}
   return shuffle({ array: youtubeUrls }).splice(0, numberOfSongs);
 }
 
-export async function getSongByUrl({ url }: { url: string }) {
-  const data = await fetch(`${endpoint}/result/${url}`)
+export async function getSongByUrl({ genreId, url }: { genreId: string, url: string }) {
+  const data = await fetch(`${endpoint}/result/${genreId}/${url}`)
 
   if (!data.ok) {
     throw new Error('Failed to fetch data')
