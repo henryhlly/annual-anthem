@@ -6,8 +6,8 @@ import Image from "next/image";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { useRef } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-// filepath: /c:/Users/mrbro/OneDrive/Documents/GitHub/annual-anthem/app/page.tsx
 export default function Home() {
   const carouselRef = useRef<Carousel | null>(null);
 
@@ -32,7 +32,7 @@ export default function Home() {
             onClick={handlePrev}
             className="absolute left-4 bg-gray-800 text-white p-2 rounded-full z-10"
           >
-            Prev
+            <FaChevronLeft />
           </button>
           <Carousel
             ref={carouselRef}
@@ -42,11 +42,11 @@ export default function Home() {
             autoPlay={false}
             interval={3000}
           >
-            <div>
-              <Image src="/general-logo.png" alt="General Logo" width={600} height={600} quality={100} className="mx-auto" />
+            <div className="flex items-center justify-center">
+              <Image src="/general-logo.png" alt="General Logo" width={50} height={50} quality={100} className="w-3/4 h-auto mx-auto p-2 border-2 border-gray-300 rounded-lg shadow-lg" />
             </div>
-            <div>
-              <Image src="/kpop-logo.png" alt="Kpop Logo" width={600} height={600} quality={100} className="mx-auto" />
+            <div className="flex items-center justify-center">
+              <Image src="/kpop-logo.png" alt="Kpop Logo" width={50} height={50} quality={100} className="w-3/4 h-auto mx-auto p-2 border-2 border-gray-300 rounded-lg shadow-lg" />
             </div>
             {/* Add more logos if needed */}
           </Carousel>
@@ -54,7 +54,7 @@ export default function Home() {
             onClick={handleNext}
             className="absolute right-4 bg-gray-800 text-white p-2 rounded-full z-10"
           >
-            Next
+            <FaChevronRight />
           </button>
         </div>
         {/* Right Side Content */}
