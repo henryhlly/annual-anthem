@@ -11,7 +11,7 @@ export async function GET(req: Request, { params }: { params: { id: string, yout
     }
 
     const jsonData = await import(`@/data/${genre.data}.json`)
-    const song = jsonData.data.find(item => item.youtube_url === youtube_url)
+    const song = jsonData.data.find((item: { youtube_url: string }) => item.youtube_url === youtube_url)
 
     if (!song) {
       return new NextResponse('song not found', { status: 404 })
