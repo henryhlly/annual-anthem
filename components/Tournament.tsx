@@ -4,6 +4,7 @@ import { useState, useEffect, useRef} from 'react';
 import { useRouter } from 'next/navigation';
 import { shuffle } from '@/lib/shuffle';
 import { getYoutube } from '@/lib/youtube';
+import { Loading } from './Loading';
 
 export const Tournament = ({ songList, songAmount, genreId }: {songList: string[], songAmount: number, genreId: string }) => {
 
@@ -38,7 +39,12 @@ export const Tournament = ({ songList, songAmount, genreId }: {songList: string[
   }
 
   // Edit round label to appropriate round
-  if (totalRounds <= 1) {
+  if (totalRounds < 1) {
+    return (
+      <Loading loadingText="LOADING RESULTS"/>
+    )
+  }
+  if (totalRounds === 1) {
     roundLabel = "Grand Final"
   } else if (totalRounds === 2) {
     roundLabel = "Semi-final "+currentRound.current+"/"+totalRounds
@@ -73,7 +79,7 @@ export const Tournament = ({ songList, songAmount, genreId }: {songList: string[
             {getYoutube({ url: video1, action: enableButtons })}
             <button
               disabled={isLoading}
-              className="text-2xl bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700 disabled:bg-black"
+              className="text-2xl bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700 disabled:bg-neutral-700"
               onClick={() => handleClick({ song: currentRound.current })}
             >
               Pick
@@ -83,7 +89,7 @@ export const Tournament = ({ songList, songAmount, genreId }: {songList: string[
             {getYoutube({ url: video2, action: enableButtons })}
             <button
               disabled={isLoading}
-              className="text-2xl bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700 disabled:bg-black"
+              className="text-2xl bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700 disabled:bg-neutral-700"
               onClick={() => handleClick({ song: currentRound.current - 1 })}
             >
               Pick
