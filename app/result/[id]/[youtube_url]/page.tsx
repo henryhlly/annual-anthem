@@ -7,6 +7,8 @@ export default async function Page({ params }: { params: { id: string, youtube_u
   const { id, youtube_url } = await params
   const data = await getSongByUrl({ genreId: id, url: youtube_url });
 
+  console.log(`Rendering Page component with id: ${id} and youtube_url: ${youtube_url}`);
+
   return (
     <main className="flex flex-col items-center h-[calc(100vh-4rem)] w-full py-6 gap-8">
       <Result song={data.song} />
