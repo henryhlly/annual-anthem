@@ -39,11 +39,11 @@ export const Tournament = ({ songList, songAmount, genreId }: {songList: string[
   }
 
   // Edit round label to appropriate round
-  if (totalRounds < 1) {
-    return (
-      <Loading loadingText="LOADING RESULTS"/>
-    )
-  }
+  // if (totalRounds < 1) {
+  //   return (
+  //     <Loading loadingText="LOADING RESULTS"/>
+  //   )
+  // }
   if (totalRounds === 1) {
     roundLabel = "Grand Final"
   } else if (totalRounds === 2) {

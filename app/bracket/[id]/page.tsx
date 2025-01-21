@@ -4,7 +4,7 @@ import { Loading } from '@/components/Loading';
 
 export default async function Page({ params }: { params: {id: string}}) {
   const { id } = await params
-  const n = 8
+  const n = 4
 
   const songList = await getRandomAllSongs({genreId: id, numberOfSongs: n});
 
