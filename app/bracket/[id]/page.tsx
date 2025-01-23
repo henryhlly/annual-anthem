@@ -1,6 +1,8 @@
 import { getRandomAllSongs } from '@/lib/song';
 import { Tournament } from '@/components/Tournament';
 import { getGenreById } from '@/lib/genre';
+import { Loading } from '@/components/Loading';
+
 
 export default async function Page({ params }: { params: {id: string}}) {
   const { id } = await params
