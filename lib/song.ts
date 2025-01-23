@@ -7,6 +7,19 @@ export type Song = {
   youtube_url: string;
 }
 
+export async function getAllSongs() {
+  const data = await fetch(`${endpoint}/bracket`)
+
+  if (!data.ok) {
+    throw new Error('Failed to fetch data')
+  }
+
+  const jsonData = await data.json()
+
+  const array = jsonData.pop_songs.map((song: Song) => song)
+  return array;
+}
+
 export async function getRandomAllSongs({ genreId, numberOfSongs }: { genreId: string, numberOfSongs: number}) {
   const data = await fetch(`${endpoint}/bracket/${genreId}`)
 
