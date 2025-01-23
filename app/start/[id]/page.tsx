@@ -6,14 +6,15 @@ import { getGenreById, getAllGenres, Genre } from '@/lib/genre';
 export const dynamicParams = false
 
 export async function generateStaticParams() {
-  const { genres } = await getAllGenres()
+  const genres = await getAllGenres()
   return genres.map((genre : Genre) => ({ id: genre.id}))
 }
 
 export default async function Page({ params }: { params: Genre }) {
   const { id } = await params
-  const { genre }: {genre: Genre} = await getGenreById(id)
-
+  console.log(id)
+  const genre = await getGenreById({ genreId: id })
+  console.log(genre)
   return (
     <div className="relative right-1/4 flex flex-col items-center h-[calc(100vh-4rem)] w-full py-32">
         <h1 className="text-4xl font-medium">

@@ -1,5 +1,6 @@
 import { endpoint } from '@/utils/endpoint';
 import { shuffle } from '@/lib/shuffle';
+import { connectToCollection } from './mongodb';
 
 export type Song = {
   title: string;
@@ -7,31 +8,21 @@ export type Song = {
   youtube_url: string;
 }
 
-export async function getRandomAllSongs({ genreId, numberOfSongs }: { genreId: string, numberOfSongs: number}) {
-  const data = await fetch(`${endpoint}/bracket/${genreId}`)
+export async function getAllSongs({ genreData }: {genreData: string}) {
+  const collection = await connectToCollection({ collectionName: genreData })
+  const data = await collection.find({}).toArray();
+  return data;
+}
 
-  if (!data.ok) {
-    throw new Error('Failed to fetch data')
-  }
-
-  const jsonData = await data.json()
-
-  // Check if jsonData.data is defined and is an array
-  if (!jsonData.data || !Array.isArray(jsonData.data)) {
-    throw new Error('Invalid data structure');
-  }
-
-  const youtubeUrls: string[] = jsonData.data.map((song: Song) => song.youtube_url)
-
+export async function getRandomAllSongs({ genreData, numberOfSongs }: { genreData: string, numberOfSongs: number}) {
+  const collection = await connectToCollection({ collectionName: genreData })
+  const data = await collection.find({}).toArray();
+  const youtubeUrls: string[] = data.map((song: Song) => song.youtube_url)
   return shuffle({ array: youtubeUrls }).splice(0, numberOfSongs);
 }
 
-export async function getSongByUrl({ genreId, url }: { genreId: string, url: string }) {
-  const data = await fetch(`${endpoint}/result/${genreId}/${url}`)
-
-  if (!data.ok) {
-    throw new Error('Failed to fetch data')
-  }
-
-  return data.json()
+export async function getSongByUrl({ genreData, url }: { genreData: string, url: string }) {
+  const collection = await connectToCollection({ collectionName: genreData })
+  const data = await collection.find({ youtube_url: url }).toArray();
+  return data[0];
 }
