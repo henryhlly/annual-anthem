@@ -1,9 +1,8 @@
-import { connectToDatabase } from '@/lib/mongodb.js';
+import { getAllSongs } from '@/lib/song';
 
 export default async function Page() {
-  const pop_songs = await connectToDatabase();
-
-  await console.log(pop_songs)
+  const pop_songs = await getAllSongs({ genreData: "pop_songs" });
+  console.log(pop_songs)
   
   return (
     <div>

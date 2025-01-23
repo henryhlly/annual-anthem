@@ -18,7 +18,7 @@ export default async function Home() {
       </div>
 
       <div className="flex flex-col ml-96 py-32 min-h-screen items-center justify-center gap-32">
-        {data?.genres?.map((genre: Genre) => {
+        {data?.map((genre: Genre) => {
           return (
             <Link href={"/start/"+genre.id} className="flex flex-col -gap-16" key={genre.id}>
               <h1 className="text-4xl text-center font-medium">
