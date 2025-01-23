@@ -9,13 +9,13 @@ export type Genre = {
 }
 
 export async function getAllGenres() {
-  const collection = await connectToCollection({ collectionName: "genre" })
+  const collection = await connectToCollection({ collectionName: "genres" })
   const data = await collection.find({}).toArray();
   return data;
 }
 
 export async function getGenreById({ genreId }: { genreId: string }) {
-  const collection = await connectToCollection({ collectionName: "genre" })
+  const collection = await connectToCollection({ collectionName: "genres" })
   const data = await collection.find({ id: genreId }).toArray();
   return data[0];
 }
