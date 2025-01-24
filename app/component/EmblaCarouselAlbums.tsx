@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React, { useCallback } from 'react';
 import './embla.css'; // Import the CSS file
 
-export function EmblaCarousel() {
+export function EmblaCarouselAlbums() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   const scrollPrev = useCallback(() => {
@@ -19,10 +19,10 @@ export function EmblaCarousel() {
       <div className="embla" ref={emblaRef}>
         <div className="embla__container">
           <div className="embla__slide">
-            <Image src="/general-logo.png" alt="general logo" width={800} height={800} quality={100} />
+            <Image src="/2024-albums.png" alt="general albums" width={800} height={800} quality={100} />
           </div>
           <div className="embla__slide">
-            <Image src="/kpop-logo.png" alt="kpop logo" width={800} height={800} quality={100} />
+            <Image src="/kpop-albums.png" alt="kpop albums" width={800} height={800} quality={100} />
           </div>
           <div className="embla__slide">Slide 3</div>
         </div>
