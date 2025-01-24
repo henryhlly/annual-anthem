@@ -2,7 +2,7 @@ require('dotenv').config({ path: './mongodb.env' });
 
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const uri = `mongodb+srv://${username}:${password}@annual-anthem.rdcdd.mongodb.net/?retryWrites=true&w=majority&appName=Annual-Anthem`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version

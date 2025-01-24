@@ -1,4 +1,3 @@
-import { endpoint } from '@/utils/endpoint';
 import { connectToCollection } from './mongodb';
 
 export type Genre = {

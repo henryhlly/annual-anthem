@@ -1,4 +1,3 @@
-import { endpoint } from '@/utils/endpoint';
 import { shuffle } from '@/lib/shuffle';
 import { connectToCollection } from './mongodb';
 
