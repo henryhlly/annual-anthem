@@ -5,6 +5,7 @@ export type Song = {
   title: string;
   artist: string;
   youtube_url: string;
+  wins: number;
 }
 
 export async function getAllSongs({ genreData }: {genreData: string}) {
@@ -24,4 +25,14 @@ export async function getSongByUrl({ genreData, url }: { genreData: string, url:
   const collection = await connectToCollection({ collectionName: genreData })
   const data = await collection.find({ youtube_url: url }).toArray();
   return data[0];
+}
+
+export async function addSongWin({ genreData, url }: {genreData: string, url: string}) {
+  const collection = await connectToCollection({ collectionName: genreData })
+  const song = await collection.find({ youtube_url: url }).toArray();
+  const numWins = song[0].wins
+
+  await console.log(numWins)
+
+  await collection.updateOne({ youtube_url: url }, { $set: { wins: numWins + 1 }})
 }
