@@ -22,7 +22,6 @@ export const Tournament = ({ songList, songAmount, genreId }: {songList: string[
   // Tournament End
   useEffect(() => {
     console.log("Tournament Rendered")
-    
     if (totalRounds < 1) {
       router.push(`/result/${genreId}/${videos[0]}`);
       totalRounds = currentRound.current
@@ -41,7 +40,7 @@ export const Tournament = ({ songList, songAmount, genreId }: {songList: string[
   // Edit round label to appropriate round
   if (totalRounds < 1) {
     return (
-      <Loading loadingText="LOADING RESULTS"/>
+      <Loading loadingText="LOADING RESULTS" winner={{id: genreId, youtube_url: videos[0]}}/>
     )
   }else if (totalRounds === 1) {
     roundLabel = "Grand Final"

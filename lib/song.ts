@@ -32,7 +32,7 @@ export async function addSongWin({ genreData, url }: {genreData: string, url: st
   const song = await collection.find({ youtube_url: url }).toArray();
   const numWins = song[0].wins
 
-  await console.log(numWins)
+  await console.log("Number of Wins: "+numWins)
 
   await collection.updateOne({ youtube_url: url }, { $set: { wins: numWins + 1 }})
 }

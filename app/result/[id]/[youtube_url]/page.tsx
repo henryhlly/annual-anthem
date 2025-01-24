@@ -1,5 +1,5 @@
 import { Result } from '@/components/Result';
-import { getSongByUrl } from '@/lib/song';
+import { getSongByUrl, addSongWin } from '@/lib/song';
 import { Button } from '@/components/Button';
 import { getGenreById } from '@/lib/genre';
 
