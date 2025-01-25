@@ -13,7 +13,7 @@ export function Loading ({ loadingText, winner }: {loadingText: string, winner: 
       }
   
       addWin();
-    }, [winner]);
+    }, []);
 
   return (
     <div className="relative flex flex-col items-center h-[calc(100vh-4rem)] w-full py-32">

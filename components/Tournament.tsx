@@ -21,8 +21,7 @@ export const Tournament = ({ songList, songAmount, genreId }: {songList: string[
 
   // Tournament End
   useEffect(() => {
-    console.log("Tournament Rendered")
-    if (totalRounds < 1) {
+    if (totalRounds === 0.5) {
       router.push(`/result/${genreId}/${videos[0]}`);
       totalRounds = currentRound.current
       console.log('Tournament Finished');
@@ -34,7 +33,6 @@ export const Tournament = ({ songList, songAmount, genreId }: {songList: string[
     rotationNum.current = rotationNum.current + 1;
     currentRound.current = 1;
     setVideos(shuffle({ array: videos }));
-    console.log("New Rotation")
   }
 
   // Edit round label to appropriate round
