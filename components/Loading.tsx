@@ -1,19 +1,12 @@
-import { useEffect } from 'react';
+import { addSongWin } from "@/lib/song";
+import { useEffect, useState } from "react";
 
-export function Loading ({ loadingText, winner }: {loadingText: string, winner: {id: string, youtube_url: string}}) {
-    useEffect(() => {
-      async function addWin() {
-        await fetch('/api/addSongWin', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(winner),
-        });
-      }
-  
-      addWin();
-    }, []);
+export function Loading ({ loadingText, data, youtubeUrl }: {loadingText: string, data: string, youtubeUrl: string}) {
+
+  useEffect(() => {
+    addSongWin({ genreData: data, url: youtubeUrl });
+    setHasTriggered(true);
+}, []);
 
   return (
     <div className="relative flex flex-col items-center h-[calc(100vh-4rem)] w-full py-32">

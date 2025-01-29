@@ -1,5 +1,6 @@
 import { shuffle } from '@/lib/shuffle';
 import { connectToCollection } from './mongodb';
+import { endpoint } from '@/utils/endpoint'
 
 export type Song = {
   title: string;
@@ -9,30 +10,29 @@ export type Song = {
 }
 
 export async function getAllSongs({ genreData }: {genreData: string}) {
-  const collection = await connectToCollection({ collectionName: genreData })
-  const data = await collection.find({}).toArray();
-  return data;
+  const data = await fetch(`${endpoint}/songs/${genreData}`)
+
+  if (!data.ok) {
+    throw new Error('Failed to fetch all songs')
+  }
+  return data.json()
 }
 
 export async function getRandomAllSongs({ genreData, numberOfSongs }: { genreData: string, numberOfSongs: number}) {
-  const collection = await connectToCollection({ collectionName: genreData })
-  const data = await collection.find({}).toArray();
+  const data = await getAllSongs({ genreData: genreData })
   const youtubeUrls: string[] = data.map((song: Song) => song.youtube_url)
   return shuffle({ array: youtubeUrls }).splice(0, numberOfSongs);
 }
 
 export async function getSongByUrl({ genreData, url }: { genreData: string, url: string }) {
-  const collection = await connectToCollection({ collectionName: genreData })
-  const data = await collection.find({ youtube_url: url }).toArray();
-  return data[0];
+  const data = await fetch(`${endpoint}/songs/${genreData}/${url}`)
+
+  if (!data.ok) {
+    throw new Error('Failed to fetch song by provided URL')
+  }
+  return data.json()
 }
 
 export async function addSongWin({ genreData, url }: {genreData: string, url: string}) {
-  const collection = await connectToCollection({ collectionName: genreData })
-  const song = await collection.find({ youtube_url: url }).toArray();
-  const numWins = song[0].wins
-
-  await console.log("Number of Wins: "+numWins)
-
-  await collection.updateOne({ youtube_url: url }, { $set: { wins: numWins + 1 }})
+  await fetch(`/api/songs/${genreData}/${url}`, { method: 'POST' });
 }

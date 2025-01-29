@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation';
 import { shuffle } from '@/lib/shuffle';
 import { getYoutube } from '@/lib/youtube';
 import { Loading } from './Loading';
+import { Genre } from '@/lib/genre';
 
-export const Tournament = ({ songList, songAmount, genreId }: {songList: string[], songAmount: number, genreId: string }) => {
+export const Tournament = ({ songList, songAmount, genre }: {songList: string[], songAmount: number, genre: Genre }) => {
 
   const router = useRouter()
   const currentRound = useRef(1)
@@ -22,7 +23,7 @@ export const Tournament = ({ songList, songAmount, genreId }: {songList: string[
   // Tournament End
   useEffect(() => {
     if (totalRounds === 0.5) {
-      router.push(`/result/${genreId}/${videos[0]}`);
+      router.push(`/result/${genre.id}/${videos[0]}`);
       totalRounds = currentRound.current
       console.log('Tournament Finished');
     }
@@ -38,7 +39,7 @@ export const Tournament = ({ songList, songAmount, genreId }: {songList: string[
   // Edit round label to appropriate round
   if (totalRounds < 1) {
     return (
-      <Loading loadingText="LOADING RESULTS" winner={{id: genreId, youtube_url: videos[0]}}/>
+      <Loading loadingText="LOADING RESULTS" data={genre.data} youtubeUrl={videos[0]} />
     )
   }else if (totalRounds === 1) {
     roundLabel = "Grand Final"

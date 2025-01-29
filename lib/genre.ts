@@ -1,4 +1,4 @@
-import { connectToCollection } from './mongodb';
+import { endpoint } from '@/utils/endpoint'
 
 export type Genre = {
   id: string;
@@ -8,13 +8,19 @@ export type Genre = {
 }
 
 export async function getAllGenres() {
-  const collection = await connectToCollection({ collectionName: "genres" })
-  const data = await collection.find({}).toArray();
-  return data;
+  const data = await fetch(`${endpoint}/genres`)
+
+  if (!data.ok) {
+    throw new Error('Failed to fetch all genres')
+  }
+  return data.json()
 }
 
 export async function getGenreById({ genreId }: { genreId: string }) {
-  const collection = await connectToCollection({ collectionName: "genres" })
-  const data = await collection.find({ id: genreId }).toArray();
-  return data[0];
+  const data = await fetch(`${endpoint}/genres/${genreId}`)
+
+  if (!data.ok) {
+    throw new Error('Failed to fetch genre by provided ID')
+  }
+  return data.json()
 }
