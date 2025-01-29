@@ -33,6 +33,16 @@ export async function getSongByUrl({ genreData, url }: { genreData: string, url:
   return data.json()
 }
 
+
+export async function getHighestWin({ genreData }: {genreData: string}) {
+  const data = await fetch(`${endpoint}/result/${genreData}`)
+
+  if (!data.ok) {
+    throw new Error('Failed to fetch all songs')
+  }
+  return data.json()
+}
+
 export async function addSongWin({ genreData, url }: {genreData: string, url: string}) {
   await fetch(`/api/songs/${genreData}/${url}`, { method: 'POST' });
 }

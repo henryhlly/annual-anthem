@@ -5,8 +5,7 @@ export function Loading ({ loadingText, data, youtubeUrl }: {loadingText: string
 
   useEffect(() => {
     addSongWin({ genreData: data, url: youtubeUrl });
-    setHasTriggered(true);
-}, []);
+  }, []);
 
   return (
     <div className="relative flex flex-col items-center h-[calc(100vh-4rem)] w-full py-32">
