@@ -15,18 +15,18 @@ export const WinDisplay = ({ allSongs }: { allSongs: Song[] }) => {
 			buttonText.current = "View All"
 		} else {
 			setNumToDisplay(allSongs.length)
-			buttonText.current = "View Less"
+			buttonText.current = "Hide"
 		}
 	}
 
 	return (
-		<div className="flex flex-col items-center w-full py-6 gap-8 ">
+		<div className="flex flex-col items-center w-full py-8 gap-5 ">
 			{songsToDisplay.map((song, index) => (
-				<div key={index} className="flex flex-row w-full bg-stone-700/50 p-5 rounded-lg gap-4">
-					<img src={`https://img.youtube.com/vi/${song.youtube_url}/sddefault.jpg`} alt="logo" width={112} height={70}></img>
-					<div className="flex flex-col w-full gap-3 item-center pt-2">
+				<div key={index} className="flex flex-row w-full bg-stone-700/50 p-2 rounded-lg">
+					<img src={`https://img.youtube.com/vi/${song.youtube_url}/sddefault.jpg`} alt="logo" width={120}></img>
+					<div className="flex flex-col w-full gap-3 items-center pt-2">
 						<h1 className="text-center font-semibold">{song.title} - {song.artist}</h1>
-						<h2 className="px-1 py-1 w-1/2 rounded-lg bg-sky-600 text-center font-semibold">Wins: {song.wins}</h2>
+						<h2 className="px-1 py-1 w-1/4 rounded-lg bg-sky-600/50 text-center font-semibold text-sm">Wins: {song.wins}</h2>
 					</div>
 				</div>
 			))}
