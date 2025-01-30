@@ -1,5 +1,5 @@
 import { addSongWin } from "@/lib/song";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 
 export function Loading ({ loadingText, data, youtubeUrl }: {loadingText: string, data: string, youtubeUrl: string}) {
 

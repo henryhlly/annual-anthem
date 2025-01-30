@@ -17,7 +17,7 @@ export const Tournament = ({ songList, songAmount, genre }: {songList: string[],
 
   const video1 = videos[currentRound.current-1]
   const video2 = videos[currentRound.current]
-  let totalRounds = songAmount / Math.pow(2, rotationNum.current)
+  const totalRounds = songAmount / Math.pow(2, rotationNum.current)
   let roundLabel = ""
 
   // Tournament End
