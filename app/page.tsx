@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getAllGenres } from "@/lib/genre";
+import { getAllGenres, Genre} from "@/lib/genre";
 
 export default async function Home() {
   const data = await getAllGenres()
