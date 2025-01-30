@@ -1,7 +1,7 @@
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 import React, { useCallback } from 'react';
-import './embla.css'; // Import the CSS file
+import './embla.css'; // Ensure this import is correct
 
 export function EmblaCarouselAlbums() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
@@ -16,7 +16,8 @@ export function EmblaCarouselAlbums() {
 
   return (
     <div>
-      <div className="embla" ref={emblaRef}>
+      {/* Ensure the embla--albums class is applied here */}
+      <div className="embla embla--albums" ref={emblaRef}>
         <div className="embla__container">
           <div className="embla__slide">
             <Image src="/2024-albums.png" alt="general albums" width={800} height={800} quality={100} />
