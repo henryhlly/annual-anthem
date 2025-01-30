@@ -1,5 +1,4 @@
 import { shuffle } from '@/lib/shuffle';
-import { connectToCollection } from './mongodb';
 import { endpoint } from '@/utils/endpoint'
 
 export type Song = {
