@@ -9,7 +9,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ data
   return NextResponse.json(result[0]);
 }
 
-export async function POST(req: Request, { params }: { params: { data: string, url: string }}) {
+export async function POST(req: NextRequest, { params }: { params: Promise<{ data: string, url: string }>}) {
   const { data, url } = await params;
   const collection = await connectToCollection({ collectionName: data })
   const song = await collection.find({ youtube_url: url }).toArray();
