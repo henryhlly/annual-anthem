@@ -22,11 +22,11 @@ export const WinDisplay = ({ allSongs }: { allSongs: Song[] }) => {
 	return (
 		<div className="flex flex-col items-center w-full py-6 gap-8 ">
 			{songsToDisplay.map((song, index) => (
-				<div key={index} className="flex flex-row w-1/3 bg-stone-700/50 p-5 rounded-lg gap-4">
+				<div key={index} className="flex flex-row w-full bg-stone-700/50 p-5 rounded-lg gap-4">
 					<img src={`https://img.youtube.com/vi/${song.youtube_url}/sddefault.jpg`} alt="logo" width={112} height={70}></img>
-					<div className="flex flex-col w-9/12 gap-3 item-center pt-2">
+					<div className="flex flex-col w-full gap-3 item-center pt-2">
 						<h1 className="text-center font-semibold">{song.title} - {song.artist}</h1>
-						<h1 className="px-1 py-1 rounded-lg bg-sky-600 text-center font-semibold">Wins: {song.wins}</h1>
+						<h2 className="px-1 py-1 w-1/2 rounded-lg bg-sky-600 text-center font-semibold">Wins: {song.wins}</h2>
 					</div>
 				</div>
 			))}
