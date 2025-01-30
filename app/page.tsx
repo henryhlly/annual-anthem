@@ -1,25 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Genre } from "@/lib/genre";
+import { getAllGenres } from "@/lib/genre";
 
 export default async function Home() {
-  // const data = await getAllGenres()
-  // await console.log(data)
-
-  const data = [
-    {
-      "id": "cG9w",
-      "name": "Pop",
-      "data": "pop_songs",
-      "image": "pop-logo"
-    },
-    {
-      "id": "a3BvcA==",
-      "name": "Kpop",
-      "data": "kpop_songs",
-      "image": "kpop-logo"
-    }
-  ]
+  const data = await getAllGenres()
 
   return (
     <main>
@@ -34,7 +18,7 @@ export default async function Home() {
       </div>
 
       <div className="flex flex-col ml-96 py-32 min-h-screen items-center justify-center gap-32">
-        {data?.map((genre: Genre) => {
+        {data?.map((genre) => {
           return (
             <Link href={"/bracket/"+genre.id} className="flex flex-col -gap-16" key={genre.id}>
               <h1 className="text-4xl text-center font-medium">
