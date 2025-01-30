@@ -24,7 +24,6 @@ export const Tournament = ({ songList, songAmount, genre }: {songList: string[],
   useEffect(() => {
     if (totalRounds === 0.5) {
       router.push(`/result/${genre.id}/${videos[0]}`);
-      totalRounds = currentRound.current
       console.log('Tournament Finished');
     }
   })

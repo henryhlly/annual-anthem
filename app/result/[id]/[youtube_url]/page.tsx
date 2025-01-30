@@ -2,7 +2,7 @@ import { Result } from '@/components/Result';
 import { getSongByUrl } from '@/lib/song';
 import { Button } from '@/components/Button';
 import { getGenreById } from '@/lib/genre';
-import { getHighestWin, Song } from '@/lib/song';
+import { getHighestWin } from '@/lib/song';
 import { WinDisplay } from '@/components/WinDisplay'
 
 export default async function Page({ params }: { params: { id: string, youtube_url: string } }) {
