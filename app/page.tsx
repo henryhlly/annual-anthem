@@ -3,8 +3,23 @@ import Link from "next/link";
 import { getAllGenres, Genre} from "@/lib/genre";
 
 export default async function Home() {
-  const data = await getAllGenres()
-  await console.log(data)
+  // const data = await getAllGenres()
+  // await console.log(data)
+
+  const data = [
+    {
+      "id": "cG9w",
+      "name": "Pop",
+      "data": "pop_songs",
+      "image": "pop-logo"
+    },
+    {
+      "id": "a3BvcA==",
+      "name": "Kpop",
+      "data": "kpop_songs",
+      "image": "kpop-logo"
+    }
+  ]
 
   return (
     <main>
