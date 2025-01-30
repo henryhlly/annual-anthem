@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getAllGenres, Genre} from "@/lib/genre";
+import { getAllGenres, Genre } from "@/lib/genre";
 
 export default async function Home() {
   const data = await getAllGenres()
@@ -18,7 +18,7 @@ export default async function Home() {
       </div>
 
       <div className="flex flex-col ml-96 py-32 min-h-screen items-center justify-center gap-32">
-        {data?.map((genre) => {
+        {data?.map((genre: Genre) => {
           return (
             <Link href={"/bracket/"+genre.id} className="flex flex-col -gap-16" key={genre.id}>
               <h1 className="text-4xl text-center font-medium">
