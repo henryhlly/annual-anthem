@@ -1,7 +1,6 @@
 'use client'
 
 import { getYoutube } from '@/lib/youtube';
-import { Song } from '@/lib/song';
 
 export const Result = ({ title, artist, youtube_url }: { title: string, artist: string, youtube_url: string }) => {
   return (

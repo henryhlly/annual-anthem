@@ -1,5 +1,4 @@
 import Youtube, { YouTubeProps } from 'react-youtube';
-import React, { useEffect } from 'react';
 
 export function getYoutube({ url, action }: { url: string, action?: () => void }) {
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
