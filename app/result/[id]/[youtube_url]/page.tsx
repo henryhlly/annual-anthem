@@ -5,7 +5,7 @@ import { getGenreById } from '@/lib/genre';
 import { getHighestWin } from '@/lib/song';
 import { WinDisplay } from '@/components/WinDisplay'
 
-export default async function Page({ params }: { params: { id: string, youtube_url: string } }) {
+export default async function Page({ params }: { params: Promise<{ id: string, youtube_url: string }> }) {
   const { id, youtube_url } = await params
   const genre = await getGenreById({ genreId: id })
   const song = await getSongByUrl({ genreData: genre.data, url: youtube_url });

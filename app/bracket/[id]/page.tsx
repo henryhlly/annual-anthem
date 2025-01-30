@@ -2,7 +2,7 @@ import { getRandomAllSongs } from '@/lib/song';
 import { Tournament } from '@/components/Tournament';
 import { getGenreById } from '@/lib/genre';
 
-export default async function Page({ params }: { params: {id: string}}) {
+export default async function Page({ params }: { params: Promise<{id: string}>}) {
   const { id } = await params
   const n = 4
   const genre = await getGenreById({ genreId: id })
