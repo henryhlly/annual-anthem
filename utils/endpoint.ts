@@ -1,1 +1,1 @@
-export const endpoint = 'http://localhost:3000/api'
+export const endpoint = 'https://app.netlify.com/sites/euphonious-kataifi-2e4213/api'
