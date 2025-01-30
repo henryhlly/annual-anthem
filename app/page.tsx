@@ -3,7 +3,8 @@ import Link from "next/link";
 import { getAllGenres, Genre} from "@/lib/genre";
 
 export default async function Home() {
-  const data = await getAllGenres() 
+  const data = await getAllGenres()
+  await console.log(data)
 
   return (
     <main>
