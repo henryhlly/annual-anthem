@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={montserrat.className}>
-      <body className="bg-gradient-to-b from-stone-700 from-0% text-white">
+      <body style={{ background: 'linear-gradient(to bottom, #434343 5vh, #333333 30vh, #0F0F0F 100vh)' }}>
         <Navbar />
         {children}
       </body>
