@@ -1,12 +1,12 @@
-"use client"
 import Carousel from "@/components/Carousel";
 
-export default function Home() {
-  const data = ["./general-logo.png", "./kpop-logo.png"]
+export default async function Home() {
+  const data = ["/general-logo.png", "/kpop-logo.png"]
 
   return (
-    <main style={{ overflow: 'hidden', height: '100vh' }}>
+    <main className="h-screen flex flex-col">
       <Carousel slides={data} />
+      <button></button>
     </main>
   );
 }

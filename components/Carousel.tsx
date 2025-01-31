@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Mousewheel } from "swiper/modules";
 import "swiper/css";
 import { useState } from "react";
+import Image from 'next/image';
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 export default function Carousel({ slides }: { slides: string[] }) {
 	const [swiper, setSwiper] = useState(useSwiper())
@@ -23,7 +25,7 @@ export default function Carousel({ slides }: { slides: string[] }) {
   };
 
   return (
-		<div className="relative">
+		<div className="relative flex flex-row w-1/2 items-center pt-32 gap-2">
 			<Swiper
 				spaceBetween={20} 
 				slidesPerView={1} 
@@ -31,18 +33,24 @@ export default function Carousel({ slides }: { slides: string[] }) {
 				mousewheel={true}
 				modules={[Mousewheel]} 
 				direction="vertical"
-				onSwiper={(swiper) => setSwiper(swiper)}
-				style={{ height: "500px", zIndex: 0}} // Set height to prevent collapsing
+				onSwiper={setSwiper}
+				style={{ height: "400px", zIndex: 0, marginLeft: "auto", marginRight: 0}}
 			>
-				{slides.map((src, index) => (
-					<SwiperSlide key={index}>
-						<img src={src} alt={`Slide ${index}`} className="w-1/4 h-auto rounded-lg" />
+				{slides.map((src: string, index) => (
+					<SwiperSlide key={index} className="center">
+						<Image src={src} alt={`Slide ${index}`} width={400} height={400} className="h-auto rounded-lg" />
 					</SwiperSlide>
 				))}
 			</Swiper>
 			{/* Navigation Buttons */}
-      <button onClick={scrollPrev} className="absolute left-0 top-1/2 -translate-y-1/2 z-2">Prev</button>
-      <button onClick={scrollNext} className="absolute right-0 top-1/2 -translate-y-1/2 z-2">Next</button>
+			<div className="flex flex-col gap-32">
+				<button onClick={scrollPrev} className="w-10 z-2">
+					<FaArrowUp size={30} />
+				</button>
+				<button onClick={scrollNext} className="w-10 z-2">
+					<FaArrowDown size={30} />
+				</button>
+			</div>
 		</div>
     
   );
