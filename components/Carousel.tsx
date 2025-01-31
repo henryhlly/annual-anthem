@@ -1,9 +1,10 @@
 "use client";
 
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import { Mousewheel, EffectFade } from "swiper/modules";
+import { Mousewheel, EffectFade, Controller } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
+
 import { useState } from "react";
 import Image from 'next/image';
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
@@ -16,14 +17,14 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
   const scrollPrev = () => {
     if (genreSwiper) {
 			genreSwiper.slidePrev();
-			albumSwiper.slidePrev();
+			
 		}
   };
 
   const scrollNext = () => {
     if (genreSwiper) {
 			genreSwiper.slideNext();
-			albumSwiper.slideNext()
+			
 		}
   };
 
@@ -34,7 +35,9 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 				slidesPerView={1} 
 				loop={true} 
 				mousewheel={true}
-				modules={[Mousewheel]} 
+				speed={1000}
+				modules={[Mousewheel, Controller]}
+				controller={{ control: albumSwiper }}
 				direction="vertical"
 				onSwiper={setGenreSwiper}
 				style={{ height: "500px", zIndex: 0, marginLeft: "auto", marginRight: 0}}
@@ -62,9 +65,10 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 				spaceBetween={20} 
 				slidesPerView={1} 
 				loop={true} 
-				mousewheel={true}
 				effect="fade"
-				modules={[Mousewheel, EffectFade]} 
+				speed={1000}
+				modules={[EffectFade, Controller]}
+				controller={{ control: genreSwiper }} 
 				direction="vertical"
 				onSwiper={setAlbumSwiper}
 				style={{ height: "500px", zIndex: 0, marginLeft: "auto", marginRight: 0}}
