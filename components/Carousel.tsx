@@ -6,8 +6,9 @@ import "swiper/css";
 import { useState } from "react";
 import Image from 'next/image';
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import { Genre } from '@/lib/genre';
 
-export default function Carousel({ slides }: { slides: string[] }) {
+export default function Carousel({ slides }: { slides: Genre[] }) {
 	const [swiper, setSwiper] = useState(useSwiper())
 
   const scrollPrev = () => {
@@ -36,9 +37,9 @@ export default function Carousel({ slides }: { slides: string[] }) {
 				onSwiper={setSwiper}
 				style={{ height: "400px", zIndex: 0, marginLeft: "auto", marginRight: 0}}
 			>
-				{slides.map((src: string, index) => (
+				{slides.map((genre: Genre, index) => (
 					<SwiperSlide key={index} className="center">
-						<Image src={src} alt={`Slide ${index}`} width={400} height={400} className="h-auto rounded-lg" />
+						<Image src={"/"+genre.image+".png"} alt={`Slide ${index}`} width={400} height={400} className="h-auto rounded-lg" />
 					</SwiperSlide>
 				))}
 			</Swiper>
