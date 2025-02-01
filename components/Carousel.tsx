@@ -32,6 +32,7 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 
 	const handleSlideChange = (swiper) => {
     carouselIndex.current = (swiper.activeIndex);
+		console.log(carouselIndex.current)
   };
 
 	const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -92,7 +93,7 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 					</button>
 				</div>
 				<Dropdown />
-				<Button href={{ pathname: `/bracket/${slides[]}`, query: { n: 0 } }} text={"Start"} width={400}/>
+				<Button href={{ pathname: `/bracket/${slides[carouselIndex.current].id}`, query: { n: 0 } }} text={"Start"} width={400}/>
 				
 			</div>
 
