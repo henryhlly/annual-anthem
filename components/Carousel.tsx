@@ -11,6 +11,10 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { Genre } from '@/lib/genre';
 import Button from '@/components/Button';
 
+interface SwiperInstance {
+	activeIndex: number;
+}
+
 export default function Carousel({ slides }: { slides: Genre[] }) {
 	const [genreSwiper, setGenreSwiper] = useState(useSwiper())
 	const [albumSwiper, setAlbumSwiper] = useState(useSwiper())
@@ -30,10 +34,10 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 		}
   };
 
-	const handleSlideChange = (swiper: any) => {
-    carouselIndex.current = (swiper.activeIndex);
-		console.log(carouselIndex.current)
-  };
+	const handleSlideChange = (swiper: SwiperInstance) => {
+		carouselIndex.current = swiper.activeIndex;
+		console.log(carouselIndex.current);
+	};
 
 	const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);

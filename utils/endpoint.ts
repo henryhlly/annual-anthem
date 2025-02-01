@@ -1,2 +1,2 @@
-export const endpoint = 'http://localhost:3000/api';
-// https://annualanthem.com/api
+export const endpoint = 'https://annualanthem.com/api';
+// 
