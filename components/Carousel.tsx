@@ -30,7 +30,7 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 		}
   };
 
-	const handleSlideChange = (swiper) => {
+	const handleSlideChange = (swiper: any) => {
     carouselIndex.current = (swiper.activeIndex);
 		console.log(carouselIndex.current)
   };
@@ -93,7 +93,7 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 					</button>
 				</div>
 				<Dropdown />
-				<Button href={{ pathname: `/bracket/${slides[carouselIndex.current].id}`, query: { n: 0 } }} text={"Start"} width={400}/>
+				<Button href={`/bracket/${slides[carouselIndex.current].id}/${selectedValue}`} text={"Start"} width={400}/>
 				
 			</div>
 

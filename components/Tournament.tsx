@@ -6,7 +6,7 @@ import { shuffle } from '@/lib/shuffle';
 import { getYoutube } from '@/lib/youtube';
 import Loading from './Loading';
 
-export default function Tournament({ songList, songAmount, genreId}: {songList: string[], songAmount: number, genreId: string }) {
+export default function Tournament({ songList, songAmount, genreId, genreData }: {songList: string[], songAmount: number, genreId: string, genreData: string }) {
 
   const router = useRouter()
   const currentRound = useRef(1)
@@ -37,7 +37,7 @@ export default function Tournament({ songList, songAmount, genreId}: {songList: 
   // Edit round label to appropriate round
   if (totalRounds < 1) {
     return (
-      <Loading loadingText="LOADING RESULTS" />
+      <Loading loadingText="LOADING RESULTS" data={genreData} youtubeUrl={videos[0]} />
     )
   }else if (totalRounds === 1) {
     roundLabel = "Grand Final"

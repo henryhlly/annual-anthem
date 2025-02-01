@@ -1,10 +1,12 @@
 import Image from 'next/image';
+import { useEffect } from 'react'
+import { addSongWin } from '@/lib/song';
 
-export default function Loading ({ loadingText }: { loadingText: string }) {
+export default function Loading ({ loadingText, data, youtubeUrl }: { loadingText: string, data: string, youtubeUrl: string }) {
 
-  // useEffect(() => {
-  //   addSongWin({ genreData: data, url: youtubeUrl });
-  // }, [data, youtubeUrl]);
+  useEffect(() => {
+    addSongWin({ genreData: data, url: youtubeUrl });
+  }, [data, youtubeUrl]);
 
   return (
     <div className="relative flex flex-col items-center h-[calc(100vh-4rem)] w-full py-32">
