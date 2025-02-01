@@ -1,10 +1,10 @@
 'use client'
 import { Song } from '@/lib/song';
 import { useState, useRef } from 'react';
-import { Button } from '@/components/Button';
+import Button from '@/components/Button';
 import Image from 'next/image';
 
-export const WinDisplay = ({ allSongs }: { allSongs: Song[] }) => {
+export default function WinDisplay({ allSongs }: { allSongs: Song[] }) {
 	const [numToDisplay, setNumToDisplay] = useState(3)
 	const buttonText = useRef("View All")
 	const songsToDisplay = allSongs.slice(0, numToDisplay)

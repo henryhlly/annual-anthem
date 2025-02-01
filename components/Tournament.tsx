@@ -4,9 +4,9 @@ import { useState, useEffect, useRef} from 'react';
 import { useRouter } from 'next/navigation';
 import { shuffle } from '@/lib/shuffle';
 import { getYoutube } from '@/lib/youtube';
-import { Loading } from './Loading';
+import Loading from './Loading';
 
-export const Tournament = ({ songList, songAmount, genreId}: {songList: string[], songAmount: number, genreId: string }) => {
+export default function Tournament({ songList, songAmount, genreId}: {songList: string[], songAmount: number, genreId: string }) {
 
   const router = useRouter()
   const currentRound = useRef(1)

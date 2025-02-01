@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export function Loading ({ loadingText }: { loadingText: string }) {
+export default function Loading ({ loadingText }: { loadingText: string }) {
 
   // useEffect(() => {
   //   addSongWin({ genreData: data, url: youtubeUrl });
