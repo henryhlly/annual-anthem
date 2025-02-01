@@ -7,14 +7,14 @@ export type Genre = {
   image: string;
 }
 
-export async function getAllGenres() {
-  const data = await fetch(`${endpoint}/genres`)
-
-  if (!data.ok) {
-    throw new Error('Failed to fetch all genres')
-  }
-  return data.json()
-}
+// export async function getAllGenres() {
+//   const data = await fetch(`${endpoint}/genres`)
+//   await console.log(data.json())
+//   if (!data.ok) {
+//     throw new Error('Failed to fetch all genres')
+//   }
+//   return data.json()
+// }
 
 export async function getGenreById({ genreId }: { genreId: string }) {
   const data = await fetch(`${endpoint}/genres/${genreId}`)
@@ -25,13 +25,13 @@ export async function getGenreById({ genreId }: { genreId: string }) {
   return data.json()
 }
 
-// import { connectToCollection } from './mongodb';
+import { connectToCollection } from './mongodb';
 
-// export async function getAllGenres() {
-//   const collection = await connectToCollection({ collectionName: "genres" })
-//   const data = await collection.find({}, { projection: { _id: 0 } }).toArray();
-//   return data;
-// }
+export async function getAllGenres() {
+  const collection = await connectToCollection({ collectionName: "genres" })
+  const data = await collection.find({}, { projection: { _id: 0 } }).toArray();
+  return data;
+}
 
 // export async function getGenreById({ genreId }: { genreId: string }) {
 //   const collection = await connectToCollection({ collectionName: "genres" })
