@@ -1,9 +1,9 @@
-import { Result } from '@/components/Result';
+import Result from '@/components/Result';
 import { getSongByUrl } from '@/lib/song';
-import { Button } from '@/components/Button';
+import Button from '@/components/Button';
 import { getGenreById } from '@/lib/genre';
 import { getHighestWin } from '@/lib/song';
-import { WinDisplay } from '@/components/WinDisplay'
+import WinDisplay from '@/components/WinDisplay'
 
 export default async function Page({ params }: { params: Promise<{ id: string, youtube_url: string }> }) {
   const { id, youtube_url } = await params

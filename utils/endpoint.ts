@@ -1,1 +1,2 @@
-export const endpoint = 'http://annualanthem.com/api';
+export const endpoint = 'https://annualanthem.com/api';
+// 
