@@ -62,29 +62,33 @@ export default function Tournament({ songList, songAmount, genreId, genreData }:
   }
 
   return (
-    <div className="flex flex-col items-center h-[calc(100vh-4rem)] gap-5 py-6"> {/* height calculation to take into account navbar*/}
-        <h1 className="text-2xl">
+    <div className="flex flex-col items-center min-h-[calc(100vh-4rem)] gap-5 py-6"> {/* height calculation to take into account navbar*/}
+        <h1 className="md:text-2xl text-lg">
           Which song is better?
         </h1>
-        <div className="text-2xl bg-sky-600 w-1/4 h-12 text-center rounded-lg flex items-center justify-center">
+        <div className="md:text-2xl text-lg bg-sky-600 w-1/4 h-12 text-center rounded-lg flex items-center justify-center">
           {roundLabel}
         </div>
-        <div className="flex flex-row gap-20">
+        <div className="flex lg:flex-row flex-col gap-20">
           <div className="flex flex-col gap-5 items-center bg-stone-800 p-5 rounded-lg shadow-lg">
-            {getYoutube({ url: video1, action: enableButtons })}
+            <div className="lg:w-[40vw] lg:h-[50vh] w-[60vw] h-[30vw]">
+              {getYoutube({ url: video1, readyAction: enableButtons })}
+            </div>
             <button
               disabled={isLoading}
-              className="text-2xl bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700 disabled:bg-neutral-700"
+              className="md:text-2xl text-lg bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700 disabled:bg-neutral-700"
               onClick={() => handleClick({ song: currentRound.current })}
             >
               Pick
             </button>
           </div>
           <div className="flex flex-col gap-5 items-center bg-stone-800 p-5 rounded-lg shadow-lg">
-            {getYoutube({ url: video2, action: enableButtons })}
+            <div className="lg:w-[40vw] lg:h-[50vh] w-[60vw] h-[30vw]">
+              {getYoutube({ url: video2, readyAction: enableButtons })}
+            </div>
             <button
               disabled={isLoading}
-              className="text-2xl bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700 disabled:bg-neutral-700"
+              className="md:text-2xl text-lg bg-sky-600 w-4/5 h-12 text-center rounded-lg flex items-center justify-center hover:scale-105 hover:bg-sky-700 disabled:bg-neutral-700"
               onClick={() => handleClick({ song: currentRound.current - 1 })}
             >
               Pick
