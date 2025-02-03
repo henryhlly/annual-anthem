@@ -42,7 +42,7 @@ export default function Tournament({ songList, songAmount, genreId, genreData }:
   }else if (totalRounds === 1) {
     roundLabel = "Grand Final"
   } else if (totalRounds === 2) {
-    roundLabel = "Semi-final "+currentRound.current+"/"+totalRounds
+    roundLabel = "Semi-Final "+currentRound.current+"/"+totalRounds
   } else {
     roundLabel = "Round "+currentRound.current+"/"+totalRounds
   }

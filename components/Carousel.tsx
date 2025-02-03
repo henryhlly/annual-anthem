@@ -100,7 +100,7 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 						onSwiper={setGenreSwiper}
 						onSlideChange={handleSlideChange}
 						style={{ width: "500px", zIndex: 1}}
-						className="md:h-[60vh] h-[45vh] custom-swiper"
+						className="md:h-[60vh] h-[50vh]"
 					>
 						{slides.map((genre: Genre, index) => (
 							<SwiperSlide key={index} className="flex flex-col items-center">
@@ -124,13 +124,13 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 			{/* RIGHT SIDE */}
 			<div className="xl:max-h-screen xl:w-1/3 w-2/5 flex flex-col items-center items-center hidden xl:block">
 				<Swiper
-					spaceBetween={20} 
-					slidesPerView={1} 
-					loop={true} 
+					spaceBetween={20}
+					slidesPerView={1}
+					loop={true}
 					effect="fade"
 					speed={1000}
 					modules={[EffectFade, Controller]}
-					controller={{ control: genreSwiper }} 
+					controller={{ control: genreSwiper }}
 					direction="vertical"
 					onSwiper={setAlbumSwiper}
 					style={{ zIndex: 0, position: "relative" }}
@@ -146,18 +146,6 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 				</Swiper>
 				<Description />
 			</div>
-
-			{/* Inline styles for Swiper pagination */}
-			<style jsx>{`
-				.custom-swiper .swiper-pagination-bullet-inactive {
-					background-color: #ffffff; /* Change this to your desired color */
-					opacity: 1;
-				}
-				.custom-swiper .swiper-pagination-bullet-active {
-					background-color: #000000; /* Change this to your desired active color */
-				}
-			`}</style>
-			
 		</div>
   );
 }
