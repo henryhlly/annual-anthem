@@ -9,9 +9,9 @@ export default async function Page() {
     data: item.data,
     image: item.image
   }))
-
+  
   return (
-      <main className="flex flex-col h-[calc(100vh-4rem)]">
+      <main className="h-full">
         <Carousel slides={data} />
       </main>
   ) 
