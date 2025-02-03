@@ -9,7 +9,7 @@ export default async function Page({ params }: { params: Promise<{id: string, n:
   const songList = await getRandomAllSongs({genreData: genre.data, numberOfSongs: n});
 
   return (
-    <main>
+    <main className="h-full">
       <Tournament songList={songList} songAmount={n} genreId={genre.id} genreData={genre.data} />
     </main>
   )

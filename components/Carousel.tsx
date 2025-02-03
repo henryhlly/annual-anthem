@@ -1,11 +1,12 @@
 "use client";
 
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import { Mousewheel, EffectFade, Controller } from "swiper/modules";
+import { Mousewheel, EffectFade, Controller, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
+import "swiper/css/pagination";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import Image from 'next/image';
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { MdOutlineSwipe } from "react-icons/md";
@@ -33,7 +34,7 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 	const [genreSwiper, setGenreSwiper] = useState(useSwiper())
 	const [albumSwiper, setAlbumSwiper] = useState(useSwiper())
 
-	const carouselIndex = useRef(0)
+	const [carouselIndex, setCarouselIndex] = useState(0)
 	const [selectedValue, setSelectedValue] = useState('32');
 
   const scrollPrev = () => {
@@ -49,31 +50,12 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
   };
 
 	const handleSlideChange = (swiper: SwiperInstance) => {
-		carouselIndex.current = swiper.activeIndex;
-		console.log(carouselIndex.current);
+		setCarouselIndex(swiper.activeIndex);
 	};
 
-	const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+	const handleDropdownChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
   };
-
-	const [screenWidth, setScreenWidth] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleResize = () => setScreenWidth(window.innerWidth);
-      
-      // Set initial width
-      setScreenWidth(window.innerWidth);
-
-      // Add event listener
-      window.addEventListener("resize", handleResize);
-
-      // Cleanup event listener on unmount
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  }, []);
-	if (screenWidth) console.log(screenWidth)
 
 	const Dropdown = () => {
 		return (
@@ -82,7 +64,7 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 				<select
 					id="dropdown"
 					value={selectedValue}
-					onChange={handleChange}
+					onChange={handleDropdownChange}
 					className="ml-5 px-4 py-2 text-white font-semibold rounded-lg bg-stone-700 md:text-base tracking-normal hover:bg-stone-600 transition-all duration-500 hover:scale-105"
 				>
 					<option value={64}>64 Songs</option>
@@ -110,15 +92,15 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 					<Swiper
 						spaceBetween={30}
 						slidesPerView={1}
-						loop={true}
 						mousewheel={true}
 						speed={1000}
-						modules={[Mousewheel, Controller]}
+						modules={[Mousewheel, Controller, Pagination]}
+						pagination={{ clickable: true }}
 						controller={{ control: albumSwiper }}
 						onSwiper={setGenreSwiper}
 						onSlideChange={handleSlideChange}
 						style={{ width: "500px", zIndex: 1}}
-						className="md:h-[60vh] h-[45vh]"
+						className="md:h-[60vh] h-[45vh] custom-swiper"
 					>
 						{slides.map((genre: Genre, index) => (
 							<SwiperSlide key={index} className="flex flex-col items-center">
@@ -135,7 +117,7 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 				</div>
 				<div className="pb-20 w-auto">
 					<Dropdown />
-					<Button href={`/bracket/${slides[carouselIndex.current].id}/${selectedValue}`} text={"Start"} className="w-full" />
+					<Button href={`/bracket/${slides[carouselIndex].id}/${selectedValue}`} text={"Start"} className="w-full" />
 				</div>
 			</div>
 
@@ -164,6 +146,17 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 				</Swiper>
 				<Description />
 			</div>
+
+			{/* Inline styles for Swiper pagination */}
+			<style jsx>{`
+				.custom-swiper .swiper-pagination-bullet-inactive {
+					background-color: #ffffff; /* Change this to your desired color */
+					opacity: 1;
+				}
+				.custom-swiper .swiper-pagination-bullet-active {
+					background-color: #000000; /* Change this to your desired active color */
+				}
+			`}</style>
 			
 		</div>
   );
