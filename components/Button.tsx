@@ -8,19 +8,20 @@ interface ButtonProps {
   handleClick?: () => void; 
   href?: string; 
   hasArrow?: boolean;
-  width?: number;
-  height?: number;
+  className?: string
 }
 
-export default function Button({ text, handleClick, href, hasArrow, width, height}: ButtonProps) {
-
-  const stylings = "flex items-center justify-center gap-8 px-5 py-5 rounded-lg bg-sky-700 hover:bg-sky-600 transition font-semibold";
+export default function Button({ text, handleClick, href, hasArrow, className}: ButtonProps) {
+  
+  let stylings = "flex items-center justify-center gap-8 px-5 py-5 rounded-lg bg-sky-700 hover:bg-sky-600 transition font-semibold transition-all duration-500 hover:scale-105";
+  if (className) {
+    stylings = stylings+ " " + className;
+  }
 
   if (href) {
     return (
       <Link href={href || '#'} 
         className={stylings}
-        style={{ width: width || 'auto', height: height || "auto "}}
       >
         {text}
         {hasArrow && <TbArrowBigRightFilled className="text-lg" />}
@@ -31,7 +32,6 @@ export default function Button({ text, handleClick, href, hasArrow, width, heigh
       <button 
         onClick={handleClick} 
         className={stylings}
-        style={{ width: width || 'auto', height: height || "auto "}}
       >
         {text}
       </button>

@@ -8,6 +8,7 @@ import "swiper/css/effect-fade";
 import { useState, useRef, useEffect } from "react";
 import Image from 'next/image';
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { MdOutlineSwipe } from "react-icons/md";
 import { Genre } from '@/lib/genre';
 import Button from '@/components/Button';
 
@@ -18,7 +19,7 @@ interface SwiperInstance {
 const Description = () => {
   return (
     <div className="bg-stone-700/50 py-10 px-6 xl:py-12 xl:px-12 w-full rounded-lg flex flex-col gap-5 shadow-lg h-auto">
-      <h1 className="text-white lg:text-2xl text-base">
+      <h1 className="text-white lg:text-2xl text-xl font-semibold">
         Find your ultimate song of 2024!
       </h1>
       <p className="text-white lg:text-base text-xs">
@@ -76,13 +77,13 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 
 	const Dropdown = () => {
 		return (
-			<div className="pb-5 flex flex-row items-center gap-3">
-				<label>How many songs?</label>
+			<div className="pb-5 flex flex-row items-center justify-center gap-3">
+				<label className="tracking-normal w-full">How many songs?</label>
 				<select
 					id="dropdown"
 					value={selectedValue}
 					onChange={handleChange}
-					className="ml-5 px-4 py-2 text-white font-semibold rounded-lg bg-stone-700"
+					className="ml-5 px-4 py-2 text-white font-semibold rounded-lg bg-stone-700 md:text-base tracking-normal hover:bg-stone-600 transition-all duration-500 hover:scale-105"
 				>
 					<option value={64}>64 Songs</option>
 					<option value={32}>32 Songs</option>
@@ -94,19 +95,20 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 	}
 
   return (
-		<div className="flex flex-col xl:flex-row rounded-2xl relative items-center gap-16 min-h-[calc(100vh-4rem)] h-full">
-			<div className="w-auto mx-10 max-w-[80%] xl:hidden">
+		<div className="flex flex-col xl:flex-row rounded-2xl relative items-center min-h-[calc(100vh-4rem)] h-full">
+			<div className="w-auto mx-10 max-w-[80%] xl:hidden mt-5 flex flex-col items-center justify-center">
 				<Description />
 			</div>
 			
 			{/* LEFT SIDE */}
 			<div className="w-1/2 flex flex-col items-center items-center">
+				<MdOutlineSwipe size={40} style={{ marginTop: 50 }} className="md:hidden" />
 				<div className="flex flex-row pb-10 items-center">
-					<button onClick={scrollPrev} className="w-12 h-12 flex items-center justify-center bg-gray-700 rounded-full shadow-md hover:bg-gray-600 transition xl:mr-5 hidden md:flex">
+					<button onClick={scrollPrev} className="w-12 h-12 flex items-center justify-center bg-gray-700 rounded-full shadow-md hover:bg-gray-600 transition-all duration-500 hover:scale-110 xl:mr-5 hidden md:flex">
 						<FaArrowLeft size={30} />
 					</button>
 					<Swiper
-						spaceBetween={20}
+						spaceBetween={30}
 						slidesPerView={1}
 						loop={true}
 						mousewheel={true}
@@ -116,24 +118,24 @@ export default function Carousel({ slides }: { slides: Genre[] }) {
 						onSwiper={setGenreSwiper}
 						onSlideChange={handleSlideChange}
 						style={{ width: "500px", zIndex: 1}}
-						className="h-[60vh]"
+						className="md:h-[60vh] h-[45vh]"
 					>
 						{slides.map((genre: Genre, index) => (
 							<SwiperSlide key={index} className="flex flex-col items-center">
 								<div className="flex flex-col items-center">
-									<Image src={"/"+genre.image+".png"} alt={`Slide ${index}`} width={450} height={450} className="w-[50vh] h-auto" />
+									<Image src={"/"+genre.image+".png"} alt={`Slide ${index}`} width={450} height={450} className="md:w-[50vh] w-[40vh] h-auto" />
 									<h1 className="text-2xl font-semibold text-center">{genre.name}</h1>
 								</div>
 							</SwiperSlide>
 						))}
 					</Swiper>
-					<button onClick={scrollNext} className="w-12 h-12 flex items-center justify-center bg-gray-700 rounded-full shadow-md hover:bg-gray-600 transition xl:ml-5 hidden md:flex">
+					<button onClick={scrollNext} className="w-12 h-12 flex items-center justify-center bg-gray-700 rounded-full shadow-md hover:bg-gray-600 transition-all duration-500 hover:scale-110 xl:ml-5 hidden md:flex">
 						<FaArrowRight size={30} />
 					</button>
 				</div>
-				<div className="pb-32">
+				<div className="pb-20 w-auto">
 					<Dropdown />
-					<Button href={`/bracket/${slides[carouselIndex.current].id}/${selectedValue}`} text={"Start"} width={400}/>
+					<Button href={`/bracket/${slides[carouselIndex.current].id}/${selectedValue}`} text={"Start"} className="w-full" />
 				</div>
 			</div>
 
