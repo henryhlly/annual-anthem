@@ -2,12 +2,10 @@ import Youtube, { YouTubeProps } from 'react-youtube';
 
 interface getYoutubeProps {
   url: string;
-  vidWidth?: number;
-  vidHeight?: number;
   readyAction?: () => void;
 }
 
-export function getYoutube({ url, vidWidth, vidHeight, readyAction }: getYoutubeProps) {
+export function getYoutube({ url, readyAction }: getYoutubeProps) {
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
     event.target.pauseVideo();
     if (readyAction) {
