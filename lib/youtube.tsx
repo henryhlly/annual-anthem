@@ -1,17 +1,25 @@
 import Youtube, { YouTubeProps } from 'react-youtube';
 
-export function getYoutube({ url, action }: { url: string, action?: () => void }) {
+interface getYoutubeProps {
+  url: string;
+  readyAction?: () => void;
+}
+
+export function getYoutube({ url, readyAction }: getYoutubeProps) {
   const onPlayerReady: YouTubeProps['onReady'] = (event) => {
     event.target.pauseVideo();
-    if (action) {
-      action();
+    if (readyAction) {
+      readyAction();
     }
   }
 
+
   const opts: YouTubeProps['opts'] = {
-    height: '360',
-    width: '480'
+    height: '100%',
+    width: '100%',
   }
 
-  return <Youtube videoId={url} opts={opts} onReady={onPlayerReady} />;
+  return (
+    <Youtube videoId={url} opts={opts} onReady={onPlayerReady} className="w-full h-full" />
+  );
 }

@@ -3,9 +3,11 @@ import { MongoClient } from 'mongodb';
 
 config({ path: './mongodb.env' });
 
-const username = process.env.MONGODB_USERNAME;
-const password = process.env.MONGODB_PASSWORD;
-const uri = `mongodb+srv://${username}:${password}@annual-anthem.rdcdd.mongodb.net/?retryWrites=true&w=majority&appName=Annual-Anthem`;
+const uri = process.env.MONGODB_CONNECTION_STRING;
+
+if (!uri) {
+  throw new Error('MONGODB_CONNECTION_STRING is not defined');
+}
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri)

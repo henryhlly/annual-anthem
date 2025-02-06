@@ -20,19 +20,14 @@ export default function Button({ text, handleClick, href, hasArrow, className}: 
 
   if (href) {
     return (
-      <Link href={href || '#'} 
-        className={stylings}
-      >
+      <Link href={href || '#'} className={stylings} >
         {text}
         {hasArrow && <TbArrowBigRightFilled className="text-lg" />}
       </Link>
     )
   } else if (handleClick) {
     return(
-      <button 
-        onClick={handleClick} 
-        className={stylings}
-      >
+      <button onClick={handleClick} className={stylings} >
         {text}
       </button>
     )
