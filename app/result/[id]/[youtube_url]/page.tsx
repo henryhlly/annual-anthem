@@ -9,7 +9,7 @@ export default async function Page({ params }: { params: Promise<{ id: string, y
   const { id, youtube_url } = await params
   const genre = await getGenreById({ genreId: id })
   const song = await getSongByUrl({ genreData: genre.data, url: youtube_url });
-
+  console.log(genre.data)
   const songData = await getHighestWin({ genreData: genre.data })
 
   return (
@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: Promise<{ id: string, y
         <Result title={song.title} artist={song.artist} youtube_url={song.youtube_url} />
         <Button href={"/"} text={"Back to Home"} hasArrow={true}/>
       </div>
-      <div className="lg:w-full pt-16 lg:pr-24 w-[50vw] items-center flex flex-col">
+      <div className="lg:w-full pt-16 lg:pr-24 w-[75vw] items-center flex flex-col">
         <WinDisplay allSongs={songData} />
       </div>
     </main>
