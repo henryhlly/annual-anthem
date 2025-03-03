@@ -69,9 +69,9 @@ export default function Tournament({ songList, songAmount, genreId, genreData }:
         <div className="md:text-2xl text-lg bg-sky-600 w-1/4 h-12 text-center rounded-lg flex items-center justify-center">
           {roundLabel}
         </div>
-        <div className="flex lg:flex-row flex-col gap-20">
+        <div className="flex lg:flex-row flex-col lg:gap-20 gap-10">
           <div className="flex flex-col gap-5 items-center bg-stone-800 p-5 rounded-lg shadow-lg">
-            <div className="lg:w-[40vw] lg:h-[50vh] w-[60vw] h-[30vw]">
+            <div className="lg:w-[40vw] lg:h-[50vh] w-[80vw] h-[40vw]">
               {getYoutube({ url: video1, readyAction: enableButtons })}
             </div>
             <button
@@ -83,7 +83,7 @@ export default function Tournament({ songList, songAmount, genreId, genreData }:
             </button>
           </div>
           <div className="flex flex-col gap-5 items-center bg-stone-800 p-5 rounded-lg shadow-lg">
-            <div className="lg:w-[40vw] lg:h-[50vh] w-[60vw] h-[30vw]">
+            <div className="lg:w-[40vw] lg:h-[50vh] w-[80vw] h-[40vw]">
               {getYoutube({ url: video2, readyAction: enableButtons })}
             </div>
             <button
